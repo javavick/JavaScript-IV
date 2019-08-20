@@ -39,6 +39,7 @@ class Student extends Person {
     this.previousBackground = object.previousBackground;
     this.className = object.className;
     this.favSubjects = object.favSubjects;
+    this.grade = object.grade;
   }
 
   listsSubjects() {
@@ -52,6 +53,18 @@ class Student extends Person {
   sprintChallenge(subject) {
     console.log(`${this.name} has begun the Sprint Challenge for ${subject}.`);
   }
+
+  graduate() {
+    if (this.grade >= 70) {
+      console.log(`Congratulations, ${this.name}! You've graduated!`);
+    } else {
+      console.log(
+        `I'm sorry, ${
+          this.name
+        }. You can't graduate just yet. Let's work on those assignments again!`
+      );
+    }
+  }
 }
 
 const joshua = new Student({
@@ -60,7 +73,8 @@ const joshua = new Student({
   location: "Texas",
   previousBackground: "Cook",
   className: "WEBPT293",
-  favSubjects: ["JavaScript", "Node.JS", "React"]
+  favSubjects: ["JavaScript", "Node.JS", "React"],
+  grade: 65
 });
 
 const holly = new Student({
@@ -69,7 +83,8 @@ const holly = new Student({
   location: "Michigan",
   previousBackground: "Engineer",
   className: "IOSPT78",
-  favSubjects: ["Swift", "Xcode", "Protocols"]
+  favSubjects: ["Swift", "Xcode", "Protocols"],
+  grade: 86
 });
 
 console.log(joshua);
@@ -94,6 +109,18 @@ class Instructor extends Person {
 
   grade(student, subject) {
     console.log(`${student.name} receives a perfect score on ${subject}!`);
+  }
+
+  randomizer(student) {
+    let num = Math.floor(Math.random() * 101);
+
+    if (num <= 50) {
+      student.grade = student.grade + Math.floor(Math.random() * 31);
+    } else {
+      student.grade = student.grade - Math.floor(Math.random() * 31);
+    }
+
+    console.log(student.grade);
   }
 }
 
@@ -166,3 +193,10 @@ console.log(chloe);
 chloe.standup("memes");
 console.log(ashley);
 ashley.debugsCode(joshua, "Preprocessing I");
+
+//=============== STRETCH ===============
+
+kain.randomizer(joshua);
+joshua.graduate();
+steph.randomizer(holly);
+holly.graduate();
